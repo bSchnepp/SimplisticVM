@@ -12,10 +12,20 @@
 RandomAccessMemory::RandomAccessMemory(int64_t size)
 {
 	this->ram = new int8_t[size];
+	this->ramsz = size;
 }
 
 RandomAccessMemory::~RandomAccessMemory()
 {
-	// TODO Auto-generated destructor stub
+	delete[] this->ram;
 }
 
+void RandomAccessMemory::write(int64_t offset, int8_t content)
+{
+	this->ram[offset] = content;
+}
+
+int8_t RandomAccessMemory::read(int64_t offset)
+{
+	return this->ram[offset];
+}

@@ -16,9 +16,11 @@ public:
 	RandomAccessMemory(int64_t size);
 	virtual ~RandomAccessMemory();
 
-	void claim(int64_t offset, int64_t length);
+	void write(int64_t offset, int8_t content);
+	int8_t read(int64_t offset);
 private:
-	int8_t* ram;
+	int8_t* ram;	//The actual byte array of RAM
+	int64_t ramsz;//Size of the array. We're just going to trust this to be accurate.
 };
 
 #endif /* RANDOMACCESSMEMORY_H_ */
