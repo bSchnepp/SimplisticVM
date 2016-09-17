@@ -31,8 +31,8 @@ private:
 
 	char rci;
 
-	int64_t rsp;
-	int64_t rbp;
+	int64_t rsp = 31744;
+	int64_t rbp = 1080320;
 
 	double fax;
 	double fbx;
@@ -46,9 +46,7 @@ private:
 
 	bool isRunning;
 
-	int64_t stacksrt = 31744;	//Start at 31744. Arbitrary number, really could be anywhere.
-	int64_t stackend = 1080320;	//1MB initial stack on RAM for initial program
-
+	std::string cpuid = "GenuineAuthentic64!";
 };
 
 #endif /* CORE_H_ */

@@ -6,8 +6,7 @@
  */
 
 #include "machine.h"
-
-
+#include <iostream>
 Machine::Machine()
 {
 	this->corecount = 2;
@@ -29,5 +28,10 @@ Machine::~Machine()
 bool Machine::more()
 {
 	// If requesting shutdown, return false. Otherwise do CPU execution.
+	// This seems hackish, ughhhhhhhhhhhhhhhhhhhhh
+	for (int64_t cnt = corecount; cnt >= 0; cnt--)
+	{
+		//TODO
+	}
 	return false;
 }
