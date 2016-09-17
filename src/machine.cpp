@@ -7,14 +7,25 @@
 
 #include "machine.h"
 
+
+Machine::Machine()
+{
+	this->cores = new Core[2];
+}
+
+
 Machine::Machine(int64_t corecount)
 {
-	// TODO Auto-generated constructor stub
-
+	this->cores = new Core[corecount];
 }
 
 Machine::~Machine()
 {
-	// TODO Auto-generated destructor stub
+	delete[] this->cores;
 }
 
+bool Machine::more()
+{
+	// If requesting shutdown, return false. Otherwise do CPU execution.
+	return false;
+}

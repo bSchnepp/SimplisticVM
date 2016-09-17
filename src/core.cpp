@@ -32,6 +32,10 @@ Core::Core()
 
 Core::~Core()
 {
-	// TODO Auto-generated destructor stub
+
 }
 
+void Core::decode(std::string line)
+{
+	//TODO
+}

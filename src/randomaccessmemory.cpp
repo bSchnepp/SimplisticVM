@@ -9,6 +9,12 @@
 
 #include <cstdint>
 
+RandomAccessMemory::RandomAccessMemory()
+{
+	this->ram = new int8_t[4294967296];
+	this->ramsz = 4294967296;
+}
+
 RandomAccessMemory::RandomAccessMemory(int64_t size)
 {
 	this->ram = new int8_t[size];

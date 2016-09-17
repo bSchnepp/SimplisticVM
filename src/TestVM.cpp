@@ -9,9 +9,16 @@
 #include <iostream>
 #include <string>
 
+#include "machine.h"
+
 int main()
 {
-	std::string readLine = std::to_string(0xA3);
-	std::cout << readLine << std::endl;
+	bool running = true;
+	Machine* machine = new Machine(4);
+	while (running)
+	{
+		running = machine->more();
+		std::cout << "Executed once more..." << std::endl;
+	}
 	return 0;
 }

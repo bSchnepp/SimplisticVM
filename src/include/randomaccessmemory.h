@@ -13,6 +13,7 @@
 class RandomAccessMemory
 {
 public:
+	RandomAccessMemory();
 	RandomAccessMemory(int64_t size);
 	virtual ~RandomAccessMemory();
 

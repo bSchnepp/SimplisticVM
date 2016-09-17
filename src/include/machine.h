@@ -16,10 +16,13 @@
 class Machine
 {
 public:
+	Machine();
 	Machine(int64_t corecount);
 	virtual ~Machine();
+
+	bool more();
 private:
-	Core cores[];
+	Core* cores;
 	HardDrive drives[];
 	RandomAccessMemory ram;
 };
