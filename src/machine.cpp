@@ -29,6 +29,5 @@ Machine::~Machine()
 bool Machine::more()
 {
 	// If requesting shutdown, return false. Otherwise do CPU execution.
-
 	return false;
 }
