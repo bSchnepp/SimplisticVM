@@ -10,12 +10,14 @@
 
 Machine::Machine()
 {
-	this->cores = new Core[2];
+	this->corecount = 2;
+	this->cores = new Core[this->corecount];
 }
 
 
 Machine::Machine(int64_t corecount)
 {
+	this->corecount = corecount;
 	this->cores = new Core[corecount];
 }
 
@@ -27,5 +29,6 @@ Machine::~Machine()
 bool Machine::more()
 {
 	// If requesting shutdown, return false. Otherwise do CPU execution.
+
 	return false;
 }

@@ -25,6 +25,8 @@ private:
 	Core* cores;
 	HardDrive drives[];
 	RandomAccessMemory ram;
+
+	int64_t corecount;
 };
 
 #endif /* MACHINE_H_ */
