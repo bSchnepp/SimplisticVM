@@ -20,6 +20,9 @@ public:
 	void decode(std::string line);
 	bool getRunning();
 
+	int64_t getStackStart();
+	int64_t getStackEnd();
+
 private:
 	int64_t rax;
 	int64_t rbx;
@@ -42,6 +45,9 @@ private:
 	double gfg;
 
 	bool isRunning;
+
+	int64_t stacksrt = 31744;	//Start at 31744. Arbitrary number, really could be anywhere.
+	int64_t stackend = 1080320;	//1MB initial stack on RAM for initial program
 
 };
 
