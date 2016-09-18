@@ -5,6 +5,6 @@ Architecture is 64-bit, and intended to try and be as minimalistic as possible f
 Nice looking readme is a todo.
 
 
-Dependancies:
+Dependencies:
   - Requires some sort of an X server.
   - That's it! Goal is to have as few dependencies as possible, aiming for maximum compatibility with the fewest libraries possible.
