@@ -15,7 +15,6 @@ class HardDrive
 {
 public:
 	HardDrive();
-	HardDrive(std::string name);
 	virtual ~HardDrive();
 private:
 	int8_t* buffer;
