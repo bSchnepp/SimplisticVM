@@ -37,6 +37,11 @@ Core::~Core()
 
 }
 
+int64_t Core::getStackStart()
+{
+	return this->rsp;
+}
+
 bool Core::getRunning()
 {
 	return this->isRunning;

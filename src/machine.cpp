@@ -11,18 +11,21 @@ Machine::Machine()
 {
 	this->corecount = 2;
 	this->cores = new Core[this->corecount];
+	this->monitor = new Monitor(800, 600);
 }
 
 
-Machine::Machine(int64_t corecount)
+Machine::Machine(uint64_t corecount)
 {
 	this->corecount = corecount;
 	this->cores = new Core[corecount];
+	this->monitor = new Monitor(800, 600);
 }
 
 Machine::~Machine()
 {
 	delete[] this->cores;
+	delete this->monitor;
 }
 
 bool Machine::more()

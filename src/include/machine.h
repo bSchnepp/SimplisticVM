@@ -11,14 +11,18 @@
 #include <cstdint>
 #include "core.h"
 #include "harddrive.h"
+#include "monitor.h"
 #include "randomaccessmemory.h"
 
 class Machine
 {
 public:
 	Machine();
-	Machine(int64_t corecount);
+	Machine(uint64_t corecount);
+	Machine(uint64_t corecount, uint64_t width, uint64_t height);
 	virtual ~Machine();
+
+	Monitor* getMonitor();
 
 	bool more();
 private:
@@ -26,7 +30,9 @@ private:
 	HardDrive drives[];
 	RandomAccessMemory ram;
 
-	int64_t corecount;
+	uint64_t corecount;
+
+	Monitor* monitor;
 };
 
 #endif /* MACHINE_H_ */

@@ -6,6 +6,9 @@
  */
 
 #include "monitor.h"
+#include <X11/Xlib.h>
+#include <iostream>
+#include <cstring>
 
 Monitor::Monitor(int64_t width, int64_t height)
 {
@@ -23,6 +26,42 @@ Monitor::Monitor(int64_t width, int64_t height)
 			this->pixels[i][k].setB(0.0);
 		}
 	}
+
+	this->display = XOpenDisplay(NULL);
+	if (this->display == NULL)
+	{
+		std::cout << "Error! Could not initialize virtual monitor!"
+				<< std::endl;
+		exit(1);
+	}
+
+	this->s = DefaultScreen(this->display);
+	this->window = XCreateSimpleWindow(this->display,
+			RootWindow(this->display, s), 10, 10, width, height, 1,
+			WhitePixel(this->display, s), BlackPixel(this->display, s));
+
+	XSelectInput(this->display, this->window, ExposureMask | KeyPressMask);
+	XMapWindow(this->display, this->window);
+
+	Atom delWindow = XInternAtom(this->display, "WM_DELETE_WINDOW", 0);
+	//XSetWMProtocols(this->display, this->window, &delWindow, 1);
+
+	while (true)
+	{
+		XNextEvent(this->display, &this->evt);
+		if (this->evt.type == Expose)
+		{
+			XFillRectangle(this->display, this->window,
+					DefaultGC(this->display, s), 20, 20, 10, 10);
+			XDrawString(this->display, this->window,
+					DefaultGC(this->display, s), 10, 50, msg, strlen(msg));
+		}
+		if (this->evt.type == KeyPress)
+		{
+			break;
+		}
+	}
+	XCloseDisplay(this->display);
 }
 
 void Monitor::redraw()
@@ -30,16 +69,17 @@ void Monitor::redraw()
 	//TODO
 }
 
-void Monitor::setPixel(int64_t posx, int64_t posy, float r, float g, float b,
+void Monitor::setPixel(uint64_t posx, uint64_t posy, float r, float g, float b,
 		float a)
 {
-	this->pixels[posx][posy].setA(0.0);
-	this->pixels[posx][posy].setR(0.0);
-	this->pixels[posx][posy].setG(0.0);
-	this->pixels[posx][posy].setB(0.0);
+	this->pixels[posx][posy].setA(a);
+	this->pixels[posx][posy].setR(r);
+	this->pixels[posx][posy].setG(g);
+	this->pixels[posx][posy].setB(b);
+	redraw();
 }
 
-void Monitor::setPixel(int64_t posx, int64_t posy, float gryscl)
+void Monitor::setPixel(uint64_t posx, uint64_t posy, float gryscl)
 {
 	Monitor::setPixel(posx, posy, gryscl, gryscl, gryscl, 1.0);
 }

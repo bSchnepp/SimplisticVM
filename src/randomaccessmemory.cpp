@@ -8,6 +8,10 @@
 #include "randomaccessmemory.h"
 
 #include <cstdint>
+#include <cstdlib>
+#include <string>
+
+#include "core.h"
 
 RandomAccessMemory::RandomAccessMemory()
 {
@@ -15,7 +19,7 @@ RandomAccessMemory::RandomAccessMemory()
 	this->ramsz = 4294967296;
 }
 
-RandomAccessMemory::RandomAccessMemory(int64_t size)
+RandomAccessMemory::RandomAccessMemory(uint64_t size)
 {
 	this->ram = new int8_t[size];
 	this->ramsz = size;
@@ -26,12 +30,31 @@ RandomAccessMemory::~RandomAccessMemory()
 	delete[] this->ram;
 }
 
-void RandomAccessMemory::write(int64_t offset, int8_t content)
+void RandomAccessMemory::write(uint64_t offset, int8_t content)
 {
 	this->ram[offset] = content;
 }
 
-int8_t RandomAccessMemory::read(int64_t offset)
+int8_t RandomAccessMemory::read(uint64_t offset)
 {
 	return this->ram[offset];
+}
+
+int64_t RandomAccessMemory::pop(int64_t valSz, Core core)
+{
+	std::string val = "";
+	int64_t sz = valSz;
+	int64_t ofst = 0;
+	while (sz > 8)
+	{
+		val.append(std::to_string(this->ram[core.getStackStart() + ofst]));
+		sz /= 8;
+		ofst++;
+	}
+	return strtoll(val.c_str(), nullptr, 16);
+}
+
+void RandomAccessMemory::push(int64_t valSz, Core core)
+{
+	//TODO
 }

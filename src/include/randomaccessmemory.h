@@ -10,18 +10,20 @@
 
 #include <cstdint>
 
+#include "core.h"
+
 class RandomAccessMemory
 {
 public:
 	RandomAccessMemory();
-	RandomAccessMemory(int64_t size);
+	RandomAccessMemory(uint64_t size);
 	virtual ~RandomAccessMemory();
 
-	void write(int64_t offset, int8_t content);
-	int8_t read(int64_t offset);
+	void write(uint64_t offset, int8_t content);
+	int8_t read(uint64_t offset);
 
-	int64_t pop(int64_t valSz);
-	int64_t push(int64_t valSz);
+	int64_t pop(int64_t valSz, Core core);
+	void push(int64_t valSz, Core core);
 private:
 	int8_t* ram;	//The actual byte array of RAM
 	int64_t ramsz;//Size of the array. We're just going to trust this to be accurate.
