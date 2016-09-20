@@ -42,6 +42,11 @@ int64_t Core::getStackStart()
 	return this->rsp;
 }
 
+int64_t Core::getStackEnd()
+{
+	return this->rbp;
+}
+
 bool Core::getRunning()
 {
 	return this->isRunning;

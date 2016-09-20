@@ -19,6 +19,7 @@ public:
 	RandomAccessMemory(uint64_t size);
 	virtual ~RandomAccessMemory();
 
+
 	void write(uint64_t offset, int8_t content);
 	int8_t read(uint64_t offset);
 

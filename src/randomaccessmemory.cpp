@@ -51,6 +51,16 @@ int64_t RandomAccessMemory::pop(int64_t valSz, Core core)
 		sz /= 8;
 		ofst++;
 	}
+	for (int i = core.getStackStart() + ofst; i < core.getStackEnd(); i++)
+	{
+		this->ram[i - ofst] = this->ram[i];
+	}
+	for (int i = core.getStackEnd() - ofst; i < core.getStackEnd(); i++)
+	{
+		this->ram[i] = 0;
+	}
+
+
 	return strtoll(val.c_str(), nullptr, 16);
 }
 

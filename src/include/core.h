@@ -23,6 +23,9 @@ public:
 	int64_t getStackStart();
 	int64_t getStackEnd();
 
+	void setStackStart(int64_t pos);
+	void setStackEnd(int64_t pos);
+
 private:
 	int64_t rax;
 	int64_t rbx;

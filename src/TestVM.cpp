@@ -22,5 +22,6 @@ int main()
 		running = machine->more();
 		std::cout << "Executed once more..." << std::endl;
 	}
+	delete machine;		//THIS IS A SUCH A TERRIBLE AND STUPID OVERSIGHT, OH MY.
 	return 0;
 }
