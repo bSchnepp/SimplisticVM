@@ -15,10 +15,10 @@ public:
 	Pixel(float r, float g, float b, float a);
 	virtual ~Pixel();
 
-	float* getR();
-	float* getG();
-	float* getB();
-	float* getA();
+	float getR();
+	float getG();
+	float getB();
+	float getA();
 
 	void setR(float v);
 	void setG(float v);

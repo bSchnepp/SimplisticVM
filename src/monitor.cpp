@@ -51,7 +51,8 @@ Monitor::Monitor(int64_t width, int64_t height)
 
 	//Atom delWindow = XInternAtom(this->display, "WM_DELETE_WINDOW", 0);
 	//XSetWMProtocols(this->display, this->window, &delWindow, 1);
-	//TODO
+	//TODO, this needs to exist to nicely ask X11 to shut up when you click the little X.
+	//Because Waypoint integrates it's GUI server pretty close to the kernel itself, we don't really need to do that for Waygui.
 
 	this->gc = DefaultGC(this->display, s);
 	while (true)

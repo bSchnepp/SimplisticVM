@@ -23,24 +23,24 @@ Pixel::Pixel(float r, float g, float b, float a)
 	this->a = a;
 }
 
-float* Pixel::getR()
+float Pixel::getR()
 {
-	return &this->r;
+	return this->r;
 }
 
-float* Pixel::getG()
+float Pixel::getG()
 {
-	return &this->g;
+	return this->g;
 }
 
-float* Pixel::getB()
+float Pixel::getB()
 {
-	return &this->b;
+	return this->b;
 }
 
-float* Pixel::getA()
+float Pixel::getA()
 {
-	return &this->a;
+	return this->a;
 }
 
 void Pixel::setA(float v)
