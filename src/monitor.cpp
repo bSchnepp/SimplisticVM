@@ -5,10 +5,16 @@
  *      Author: brian-dev
  */
 
+#define UsingX11
+
 #include "monitor.h"
-#include <X11/Xlib.h>
+
 #include <iostream>
 #include <cstring>
+
+#ifdef UsingX11
+#include <X11/Xlib.h>
+#endif
 
 Monitor::Monitor(int64_t width, int64_t height)
 {
@@ -26,7 +32,7 @@ Monitor::Monitor(int64_t width, int64_t height)
 			this->pixels[i][k].setB(0.0);
 		}
 	}
-
+#ifdef UsingX11
 	this->display = XOpenDisplay(NULL);
 	if (this->display == NULL)
 	{
@@ -38,21 +44,24 @@ Monitor::Monitor(int64_t width, int64_t height)
 	this->s = DefaultScreen(this->display);
 	this->window = XCreateSimpleWindow(this->display,
 			RootWindow(this->display, s), 10, 10, width, height, 1,
-			WhitePixel(this->display, s), BlackPixel(this->display, s));
+			BlackPixel(this->display, s), WhitePixel(this->display, s));
 
 	XSelectInput(this->display, this->window, ExposureMask | KeyPressMask);
 	XMapWindow(this->display, this->window);
 
-	Atom delWindow = XInternAtom(this->display, "WM_DELETE_WINDOW", 0);
+	//Atom delWindow = XInternAtom(this->display, "WM_DELETE_WINDOW", 0);
 	//XSetWMProtocols(this->display, this->window, &delWindow, 1);
+	//TODO
 
+	this->gc = DefaultGC(this->display, s);
 	while (true)
 	{
 		XNextEvent(this->display, &this->evt);
 		if (this->evt.type == Expose)
 		{
-			XFillRectangle(this->display, this->window,
-					DefaultGC(this->display, s), 20, 20, 10, 10);
+			XFillRectangle(this->display, this->window, this->gc, 20, 20, 10,
+					10);
+			//GC graphics = XCreateGC(this->display, null, null, null);	//TODO
 			XDrawString(this->display, this->window,
 					DefaultGC(this->display, s), 10, 50, msg, strlen(msg));
 		}
@@ -62,11 +71,32 @@ Monitor::Monitor(int64_t width, int64_t height)
 		}
 	}
 	XCloseDisplay(this->display);
+#endif
 }
 
 void Monitor::redraw()
 {
-	//TODO
+	for (int i = 0; i < height; i++)
+	{
+		for (int k = 0; k < width; k++)
+		{
+#ifdef UsingX11
+
+			XDrawPoint(this->display, this->window, this->gc, k, i);
+			//TODO, draw pixels to window.
+#else
+#ifdef Waypoint
+			WayDrawPixel(
+					this->window,
+					this->pixels[i][k].getA();
+					this->pixels[i][k].getR();
+					this->pixels[i][k].getG();
+					this->pixels[i][k].getB();
+			)
+#endif
+#endif
+		}
+	}
 }
 
 void Monitor::setPixel(uint64_t posx, uint64_t posy, float r, float g, float b,

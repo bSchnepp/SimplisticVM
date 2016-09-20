@@ -33,6 +33,8 @@ private:
 	Window window;
 	XEvent evt;
 
+	GC gc;
+
 	int s;
 
 	char* msg = "Hello, world!";

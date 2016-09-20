@@ -34,6 +34,8 @@ private:
 	int64_t rsp = 31744;
 	int64_t rbp = 1080320;
 
+	int64_t isp = 31744;
+
 	double fax;
 	double fbx;
 	double fcx;

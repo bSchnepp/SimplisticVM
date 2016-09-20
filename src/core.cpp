@@ -50,4 +50,5 @@ bool Core::getRunning()
 void Core::decode(std::string line)
 {
 	//TODO
+	this->isp = (this->isp + 10);	//All instructions are guaranteed to be 10 in hex length... we count everything in hex length.
 }
