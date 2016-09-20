@@ -43,7 +43,7 @@ Monitor::Monitor(int64_t width, int64_t height)
 
 	this->s = DefaultScreen(this->display);
 	this->window = XCreateSimpleWindow(this->display,
-			RootWindow(this->display, s), 10, 10, width, height, 1,
+			RootWindow(this->display, s), 0, 0, width, height, 1,
 			BlackPixel(this->display, s), WhitePixel(this->display, s));
 
 	XSelectInput(this->display, this->window, ExposureMask | KeyPressMask);
@@ -59,11 +59,9 @@ Monitor::Monitor(int64_t width, int64_t height)
 		XNextEvent(this->display, &this->evt);
 		if (this->evt.type == Expose)
 		{
-			XFillRectangle(this->display, this->window, this->gc, 20, 20, 10,
-					10);
 			//GC graphics = XCreateGC(this->display, null, null, null);	//TODO
 			XDrawString(this->display, this->window,
-					DefaultGC(this->display, s), 10, 50, msg, strlen(msg));
+					DefaultGC(this->display, s), 0, 10, msg, strlen(msg));
 		}
 		if (this->evt.type == KeyPress)
 		{
