@@ -10,6 +10,7 @@
 
 #include <cstdint>
 #include <string>
+#include <fstream>
 
 class HardDrive
 {
@@ -18,6 +19,7 @@ public:
 	virtual ~HardDrive();
 private:
 	int8_t* buffer;
+	std::ofstream* filestream;
 };
 
 #endif /* INCLUDE_HARDDRIVE_H_ */

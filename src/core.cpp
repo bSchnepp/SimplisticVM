@@ -16,6 +16,8 @@ Core::Core()
 
 	this->rci = 0;
 
+	this->shell = 0;
+
 	this->rsp = 0;
 	this->rbp = 0;
 
@@ -55,5 +57,5 @@ bool Core::getRunning()
 void Core::decode(std::string line)
 {
 	//TODO
-	this->isp = (this->isp + 10);	//All instructions are guaranteed to be 10 in hex length... we count everything in hex length.
+	this->isp = (this->isp + line.length());	//Add to it the length of the string. We expect that the line is exactly all we need to execute, nothing more, nothing less.
 }

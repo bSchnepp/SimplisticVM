@@ -27,31 +27,39 @@ public:
 	void setStackEnd(int64_t pos);
 
 private:
-	int64_t rax;
-	int64_t rbx;
-	int64_t rcx;
-	int64_t rdx;
+	int64_t rax;	//General purpose register
+	int64_t rbx;	//General purpose register
+	int64_t rcx;	//General purpose register
+	int64_t rdx;	//General purpose register
 
-	char rci;
+	char rci;		//Character storage
 
-	int64_t rsp = 31744;
-	int64_t rbp = 1080320;
+	int64_t rsp = 31744;	//Pointer to "top" of stack, lower in memory.
+	int64_t rbp = 1080320;	//Pointer to "bottom" of stack, furthest part in memory.
 
-	int64_t isp = 31744;
+	int64_t isp = 31744;	//Position in memory processor starts executing.
 
-	double fax;
-	double fbx;
-	double fcx;
-	double fdx;
+	int shell;				//Ring level from 0 - 3 which will be used. 0 is kernel mode, 3 is user-mode. Utilize 2 and 1 somehow.
 
-	double gfa;
-	double gfr;
-	double gfb;
-	double gfg;
+	double fax;				//Float register.
+	double fbx;				//Float register.
+	double fcx;				//Float register.
+	double fdx;				//Float register.
 
-	bool isRunning;
+	double gfa;				//Graphics data register
+	double gfr;				//Graphics data register
+	double gfb;				//Graphics data register
+	double gfg;				//Graphics data register
 
-	std::string cpuid = "GenuineAuthentic64!";
+	bool isRunning;			//Is the processor running?
+
+	std::string cpuid = "GenuineAuthentic64!";	//Identified string through cpuid instruction... we're trying to be "sort of x86", because Waypoint is intended to eventually run on x86_64.
+};
+
+
+class MemManUnit
+{
+	//Todo
 };
 
 #endif /* CORE_H_ */

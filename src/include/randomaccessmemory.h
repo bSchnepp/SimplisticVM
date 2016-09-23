@@ -25,6 +25,7 @@ public:
 
 	int64_t pop(int64_t valSz, Core core);
 	void push(int64_t valSz, Core core);
+
 private:
 	int8_t* ram;	//The actual byte array of RAM
 	int64_t ramsz;//Size of the array. We're just going to trust this to be accurate.

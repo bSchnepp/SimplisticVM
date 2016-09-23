@@ -9,6 +9,7 @@
 #define MONITOR_H_
 
 #include <cstdint>
+#include <cstring>
 #include <X11/Xlib.h>
 #include "pixel.h"
 
@@ -37,7 +38,7 @@ private:
 
 	int s;
 
-	char* msg = "Hello, world!";
+	const char* msg = "Hello, world!";
 };
 
 #endif /* MONITOR_H_ */

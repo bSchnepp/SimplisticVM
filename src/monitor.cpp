@@ -52,10 +52,10 @@ Monitor::Monitor(int64_t width, int64_t height)
 	//Atom delWindow = XInternAtom(this->display, "WM_DELETE_WINDOW", 0);
 	//XSetWMProtocols(this->display, this->window, &delWindow, 1);
 	//TODO, this needs to exist to nicely ask X11 to shut up when you click the little X.
-	//Because Waypoint integrates it's GUI server pretty close to the kernel itself, we don't really need to do that for Waygui.
+	//Waygui will hopefully fix this problem :)
 
 	this->gc = DefaultGC(this->display, s);
-	while (true)
+	while (true)	//ugh
 	{
 		XNextEvent(this->display, &this->evt);
 		if (this->evt.type == Expose)
@@ -66,7 +66,7 @@ Monitor::Monitor(int64_t width, int64_t height)
 		}
 		if (this->evt.type == KeyPress)
 		{
-			break;
+			;	//Pass input into virtual machine
 		}
 	}
 	XCloseDisplay(this->display);
