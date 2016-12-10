@@ -8,3 +8,6 @@ Nice looking readme is a todo.
 Dependencies:
   - Requires some sort of an X server.
   - That's it! Goal is to have as few dependencies as possible, aiming for maximum compatibility with the fewest libraries possible.
+
+TODO:
+  - Chuck Xlib stuff out and replace everything with XCB + rendering with GPU acceleration (Vulkan)
